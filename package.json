@@ -6,6 +6,9 @@
   "scripts": {
     "test": "mocha -R spec"
   },
+  "bin": {
+    "darkmagic-dispel": "index.js"
+    },
   "dependencies": {
     "darkmagic": "^6.0.0",
     "escodegen": "^1.6.1",

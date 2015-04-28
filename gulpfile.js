@@ -11,6 +11,8 @@ var target = argv.path || process.cwd()
 var os = require('os')
 var escodegen = require('escodegen')
 
+gulpUtil.log('warning, this is an experimental process...')
+
 gulp.task('default', function() {
 
 	gulpUtil.log('processing files at ' + target)
@@ -35,6 +37,13 @@ function transform(file, encoding, callback) {
 			var params = body.expression.right.params
 			var parent = new Dependency('$injector')
 			var code = ''
+			var isAsync = false
+
+			if (hasCallback(params)) {
+				gulpUtil.log('*** module ' + path.basename(file.path) + ' is async')
+				isAsync = true
+				params.pop()
+			}
 
 			for (var i = 0; i < params.length; i++) {
 				var dependencyName = params[i].name
@@ -54,6 +63,10 @@ function transform(file, encoding, callback) {
 				}
 
 				code += 'var ' + dependencyName + ' = require(\'' + requireId + '\')' + os.EOL
+			}
+
+			if (isAsync) {
+				code += 'function callback() { throw new Error("must implement callback") }' + os.EOL
 			}
 
 			if (params.length > 0) {
@@ -106,6 +119,6 @@ function replaceReturnsWithExports(tree) {
 
 }
 
-function isAsync(params) {
+function hasCallback(params) {
 	return params[params.length - 1].name === 'callback'
 }

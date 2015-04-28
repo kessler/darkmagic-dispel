@@ -38,4 +38,5 @@ var expectedDmModule =
 "module.exports = function () {" + os.EOL +
 "};"
 
-var expectedXModule = "console.log('hi');"
+var expectedXModule =
+'function callback() { throw new Error("must implement callback") }' + os.EOL + "console.log('hi');" 
