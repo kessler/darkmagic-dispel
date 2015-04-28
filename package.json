@@ -1,6 +1,6 @@
 {
   "name": "darkmagic-dispel",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "bin": {
     "darkmagic-dispel": "index.js"
-    },
+  },
   "dependencies": {
     "darkmagic": "^6.0.0",
     "escodegen": "^1.6.1",
