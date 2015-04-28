@@ -2,16 +2,21 @@
   "name": "darkmagic-dispel",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",  
+  "main": "index.js",
   "scripts": {
     "test": "mocha -R spec"
   },
-  "dependencies": {},
-    
-   
-    "author": "Yaniv Kessler", 
-  
-  
+  "dependencies": {
+    "darkmagic": "^6.0.0",
+    "escodegen": "^1.6.1",
+    "esprima": "^2.2.0",
+    "gulp": "^3.8.11",
+    "gulp-util": "^3.0.4",
+    "minimist": "^1.1.1",
+    "should": "^6.0.1",
+    "through2": "^0.6.5"
+  },
+  "author": "Yaniv Kessler",
   "bugs": {
     "url": "https://github.com/kessler/darkmagic-dispel/issues"
   },
@@ -20,6 +25,5 @@
     "url": "https://github.com/kessler/darkmagic-dispel"
   },
   "homepage": "https://github.com/kessler/darkmagic-dispel",
-    
   "license": "MIT"
 }
