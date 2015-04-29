@@ -10,8 +10,8 @@ describe('darkmagic-dispel', function () {
 		run(function (err, stdout, stderr) {
 			if (err) return done(err)
 
-			fs.readFileSync(path.resolve(__dirname, '..', 'dispel', 'dmModule.js'), 'utf8').should.eql(expectedDmModule)
-			fs.readFileSync(path.resolve(__dirname, '..', 'dispel', 'x.js'), 'utf8').should.eql(expectedXModule)
+			fs.readFileSync(path.resolve(__dirname, 'dispel', 'dmModule.js'), 'utf8').should.eql(expectedDmModule)
+			fs.readFileSync(path.resolve(__dirname, 'dispel', 'x.js'), 'utf8').should.eql(expectedXModule)
 
 			done()
 		})
@@ -31,12 +31,12 @@ function run(callback) {
 }
 
 var expectedDmModule = 
-"var util = require('util')" + os.EOL +
-"var fs = require('fs')" + os.EOL +
-"var x = require('./x.js')" + os.EOL + os.EOL +
+"var util = require('util');" + os.EOL +
+"var fs = require('fs');" + os.EOL +
+"var x = require('./x.js');" + os.EOL + os.EOL +
 "console.log(x);" + os.EOL +
 "module.exports = function () {" + os.EOL +
 "};"
 
 var expectedXModule =
-'function callback() { throw new Error("must implement callback") }' + os.EOL + "console.log('hi');" 
+'function callback() { throw new Error("must implement callback") };' + os.EOL + "console.log('hi');" 
