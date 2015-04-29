@@ -52,7 +52,10 @@ function transform(file, encoding, callback) {
 
 		var parsed = esprima.parse(file.contents)
 
-		if (parsed.body.length === 0) return callback(null, file)
+		if (parsed.body.length === 0) {
+			gulpUtil.log('skipping ' + file.path + ' because there are no parameters')
+			return callback(null, file)
+		}
 
 		var body
 
@@ -63,6 +66,11 @@ function transform(file, encoding, callback) {
 				body = s1
 				break;
 			}
+		}
+
+		if (body.expression.right.id && body.expression.right.id.name.indexOf('dontInject') === 0) {
+			gulpUtil.log('skipping ' + file.path + ' because export is explicitely not injectable')
+			return callback(null, file)
 		}
 
 		if (body) {

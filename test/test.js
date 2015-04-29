@@ -12,6 +12,7 @@ describe('darkmagic-dispel', function () {
 
 			fs.readFileSync(path.resolve(__dirname, 'dispel', 'dmModule.js'), 'utf8').should.eql(expectedDmModule)
 			fs.readFileSync(path.resolve(__dirname, 'dispel', 'x.js'), 'utf8').should.eql(expectedXModule)
+			fs.readFileSync(path.resolve(__dirname, 'dispel', 'y.js'), 'utf8').should.eql(expectedYModule)
 
 			done()
 		})
@@ -40,3 +41,6 @@ var expectedDmModule =
 
 var expectedXModule =
 'function callback() { throw new Error("must implement callback") };' + os.EOL + "console.log('hi');" 
+
+var expectedYModule =
+'module.exports = function dontInject(x) {}'
