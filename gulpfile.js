@@ -68,12 +68,12 @@ function transform(file, encoding, callback) {
 			}
 		}
 
-		if (body.expression.right.id && body.expression.right.id.name.indexOf('dontInject') === 0) {
-			gulpUtil.log('skipping ' + file.path + ' because export is explicitely not injectable')
-			return callback(null, file)
-		}
-
 		if (body) {
+			if (body.expression.right.id && body.expression.right.id.name.indexOf('dontInject') === 0) {
+				gulpUtil.log('skipping ' + file.path + ' because export is explicitely not injectable')
+				return callback(null, file)
+			}
+
 			var params = body.expression.right.params
 			var parent = new Dependency('$injector')
 			var code = ''
